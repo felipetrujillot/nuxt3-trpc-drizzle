@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { useToast } from "@/components/ui/toast/use-toast";
 const { toast } = useToast();
+
+onMounted(async () => {
+  //await getMatchTimeline();
+});
 </script>
 
 <template>
   <div class="hidden flex-col md:flex">
     <Navbar />
+    <Toaster />
   </div>
 
   <div class="flex-1 space-y-4 p-8 pt-6">
@@ -13,7 +18,17 @@ const { toast } = useToast();
       <h2 class="text-3xl font-bold tracking-tight">Dashboard</h2>
       <div class="flex items-center space-x-2">
         <!-- <DateRangePicker /> -->
-        <Button>Download</Button>
+
+        <Button
+          @click="
+            toast({
+              title: 'Scheduled: Catch up',
+              description: 'Friday, February 10, 2023 at 5:57 PM',
+            })
+          "
+        >
+          Toast
+        </Button>
       </div>
     </div>
 

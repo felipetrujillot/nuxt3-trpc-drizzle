@@ -2,8 +2,6 @@
 defineProps<{
   name: string;
 }>();
-
-console.log("hererere");
 </script>
 
 <template>
