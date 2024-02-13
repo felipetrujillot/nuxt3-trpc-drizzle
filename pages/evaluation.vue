@@ -5,6 +5,59 @@ definePageMeta({
   layout: 'new-test-layout',
 })
 
+const courses = {
+  id_course: 1,
+  title: 'Curso Ejemplo',
+  sections: [
+    {
+      id_module: 1,
+      title: 'Sección 1: Introducción al Curso',
+      content: [
+        {
+          id_content: 1,
+          title: '¿Qué puedes esperar del curso?',
+          type: 'VIDEO',
+          url_content: 'https://www.w3schools.com/html/mov_bbb.mp4',
+          resourses: [],
+        },
+        {
+          id_content: 2,
+          title: '¿Qué materiales requieres?',
+          type: 'VIDEO',
+          url_content: 'https://www.w3schools.com/html/mov_bbb.mp4',
+          resourses: [],
+        },
+      ],
+    },
+    {
+      id_module: 2,
+      title: 'Sección 2: Herramientas del Curso',
+      content: [
+        {
+          id_content: 1,
+          title: '¿Softwares requeridos?',
+          type: 'VIDEO',
+          url_content: 'https://www.w3schools.com/html/mov_bbb.mp4',
+          resourses: [],
+        },
+      ],
+    },
+    {
+      id_module: 3,
+      title: 'Sección 3: Seguridad de la Información',
+      content: [
+        {
+          id_content: 1,
+          title: '¿Qué es la seguridad de la información?',
+          type: 'VIDEO',
+          url_content: 'https://www.w3schools.com/html/mov_bbb.mp4',
+          resourses: [],
+        },
+      ],
+    },
+  ],
+}
+
 /**
  *
  */
@@ -138,17 +191,14 @@ const datad = (e: PointerEvent) => {
   </div>
   <Separator class="my-6" />
 
-  <!-- <RadioGroup class="mb-2">
-    <div class="flex items-center space-x-2">
-      <Label for="option-one"> fds</Label>
-      <RadioGroupItem
-        id="option-one"
-        value="option-one"
-        @click.prevent="datad"
-      />
-      <Label for="option-one">e</Label>
-    </div>
-  </RadioGroup> -->
+  <Accordion type="single" collapsible v-for="d in courses.sections">
+    <AccordionItem :value="d.id_module.toString()">
+      <AccordionTrigger>{{ d.title }}</AccordionTrigger>
+      <AccordionContent v-for="(c, k) in d.content">
+        <p class="mb-2">{{ k + 1 }}. {{ c.title }}</p>
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
 
   <div v-for="(d, k) in data" class="mb-6">
     <h3 class="text-lg font-medium mb-3">{{ k + 1 }}. {{ d.question }}</h3>
@@ -180,7 +230,6 @@ const datad = (e: PointerEvent) => {
         <Label for="option-one"> {{ i.text }}</Label>
       </div>
     </div>
-
     <!-- SELECCIÓN MÚLTIPLE -->
   </div>
 
